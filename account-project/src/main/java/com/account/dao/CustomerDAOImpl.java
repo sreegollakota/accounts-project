@@ -3,6 +3,7 @@ package com.account.dao;
 import java.util.List;
 import java.util.Optional;
 
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
@@ -22,6 +23,9 @@ public class CustomerDAOImpl implements CustomerDAO{
 
 	@Autowired
 	private CustomerRepository customerRepository;
+	
+	@Autowired
+	private MongoTemplate mongoTemplate;
 
 	@Override
 	public List<Customer> getAllCustomers() {
@@ -45,40 +49,17 @@ public class CustomerDAOImpl implements CustomerDAO{
 	@Override
 	public void addAccountToCustomer(String accountId, String customerId) {
 		// TODO Auto-generated method stub
+		ObjectId id = new ObjectId(customerId);
+		Customer cust = mongoTemplate.findOne(
+				  Query.query(Criteria.where("_id").is(id)), Customer.class);
+		
+		if(cust!=null) {
+			cust.setAccountId(accountId);
+			customerRepository.save(cust);
+		}else {
+			System.out.println("Customer Record Not found");
+		}
 		
 	}
 	
-	/*
-	private MongoTemplate mongoTemplate;
-	
-	@Override
-	public List<Customer> getAllCustomers() {
-		// TODO Auto-generated method stub
-		return mongoTemplate.findAll(Customer.class);
-	}
-
-	@Override
-	public Customer getCustomerById(String customerId) {
-		Query query = new Query();
-		query.addCriteria(Criteria.where("userId").is(customerId));
-		return mongoTemplate.findOne(query, Customer.class);
-	}
-
-	@Override
-	public Customer addNewCustomer(Customer customer) {
-		// TODO Auto-generated method stub
-		mongoTemplate.save(customer);
-		// Now, user object will contain the ID as well
-		return customer;
-	}
-	
-	@Override
-	public void addAccountToCustomer(@RequestBody String accountId,String customerId) {
-		
-	    Query query = new Query();
-	    Query firstGreatCmts = Query.query(Criteria.where("customerId").is(customerId));
-		mongoTemplate.updateFirst(firstGreatCmts, Update.update("accountId", accountId), Customer.class);
-		
-	}
-	*/
 }

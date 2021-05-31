@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import com.account.model.Customer;
 
-@Repository
+//@Repository
 //RestResource(collectionResourceRel = "customers", path = "customers")
 
 public interface CustomerRepository extends MongoRepository<Customer, String>{	

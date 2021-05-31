@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import com.account.model.Account;
 
-@RepositoryRestResource(collectionResourceRel = "accounts", path = "accounts")
+//@RepositoryRestResource(collectionResourceRel = "accounts", path = "accounts")
 
 public interface AccountRepository extends MongoRepository<Account, String>{	
 

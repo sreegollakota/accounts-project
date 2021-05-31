@@ -23,17 +23,11 @@ public class AccountController {
 	
 	@Autowired
 	private final AccountRepository accountRepository;
-	
-	//private final AccountDAO accountDao;
-	
-	
-	
+		
 	public AccountController(AccountRepository accountRepository) {//,AccountDAO accountDao) {
 		
 		this.accountRepository = accountRepository;
-		//this.accountDao  = accountDao;
 	}
-	//• createAccount()
 	@RequestMapping(value="account/create",method=RequestMethod.POST)
 	public Account creatNewAccount(@RequestBody Account accountDetails) {
 		LOG.info("Saving Account Data");
@@ -47,12 +41,6 @@ public class AccountController {
 		//LOG.info("get balance Data"+accountDao.getBalance(accountId));
 		//return accountDao.getBalance(accountId);
 			
-	}
-
-	//addTransactionToaccount
-	@RequestMapping("/addTransaction")
-	void addTransaction() {
-		
 	}
 	
 }

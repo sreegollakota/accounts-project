@@ -18,7 +18,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 public class Customer {
 	@Id
-	String customerId;
+	String id;
 	Date dateOfBirth;
 	String customerName;
 	String address;
@@ -29,11 +29,16 @@ public class Customer {
 	public void setAccountId(String accountId) {
 		this.accountId = accountId;
 	}
+	@Override
+	public String toString() {
+		return "Customer [customerId=" + id + ", dateOfBirth=" + dateOfBirth + ", customerName=" + customerName
+				+ ", address=" + address + ", accountId=" + accountId + ", accounts=" + accounts + "]";
+	}
 	public String getCustomerId() {
-		return customerId;
+		return id;
 	}
 	public void setCustomerId(String customerId) {
-		this.customerId = customerId;
+		this.id = customerId;
 	}
 	public Date getDateOfBirth() {
 		return dateOfBirth;

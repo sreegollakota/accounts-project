@@ -3,6 +3,7 @@ package com.account.dao;
 import java.util.List;
 import java.util.Optional;
 
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
@@ -20,7 +21,8 @@ public class AccountDAOImpl implements AccountDAO{
 	@Autowired
 	private AccountRepository accountRepo;
 	
-	
+	@Autowired
+	private MongoTemplate mongoTemplate;
 	
 	@Override
 	public List<Account> getAllAccounts() {
@@ -48,12 +50,15 @@ public class AccountDAOImpl implements AccountDAO{
 	
 	@Override
 	public double getBalance(String accountId) {
+		
+		
 		Query query = new Query();
-		query.addCriteria(Criteria.where("accountId").is(accountId));
-		Optional<Account> tmpAccount = accountRepo.findById(accountId);
-		//Account tmpAccount =  mongoTemplate.findOne(query, Account.class);
-		//return tmpAccount.getBalance();
-		return 0;
+		query.addCriteria(Criteria.where("_id").is(new ObjectId(accountId)));
+		Account tmpAccount = mongoTemplate.findOne(query,Account.class);
+		if(tmpAccount!=null) 
+			return tmpAccount.getBalance();
+		else
+			return 0;
 	}
 
 }

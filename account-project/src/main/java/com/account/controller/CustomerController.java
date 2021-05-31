@@ -2,6 +2,7 @@ package com.account.controller;
 
 
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -37,7 +38,6 @@ public class CustomerController {
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public List<Customer> getAllUsers() {
 		LOG.info("Getting all users.");
-		//return customerRepository.findAll();
 		return customerDao.getAllCustomers();
 	}
 	//createCustomer
@@ -45,12 +45,15 @@ public class CustomerController {
 	@RequestMapping(value="customer/create",method=RequestMethod.POST)
 	public Customer createCustomer(@RequestBody Customer custDetails) {
 		LOG.info("Saving Customer Data");
-		//return customerRepository.save(custDetails);
 		return customerDao.addNewCustomer(custDetails);
 	}
 	
 	@RequestMapping(value="/customer/addAccount",method=RequestMethod.POST)
-	public void addAccountToCustomer(@RequestBody String accountId,String customerId) {
+	public void addAccountToCustomer(@RequestBody Map<String, String> json) {
+		
+		String accountId, customerId;
+		accountId =json.get("accountId");
+		customerId = json.get("customerId");
 		customerDao.addAccountToCustomer(accountId, customerId);
 	}
 	

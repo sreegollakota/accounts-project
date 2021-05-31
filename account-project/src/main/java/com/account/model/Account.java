@@ -20,6 +20,11 @@ public class Account {
 	@Id
 	private String accountId;
 	private Date startDate;
+	@Override
+	public String toString() {
+		return "Account [accountId=" + accountId + ", startDate=" + startDate + ", balance=" + balance
+				+ ", productType=" + productType + ", transactions=" + transactions + "]";
+	}
 	private double balance;
 	private String productType;
 	private Map<String,String> transactions;
