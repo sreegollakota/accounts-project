@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.account.dao.AccountDAO;
-import com.account.dao.AccountRepository;
 import com.account.model.Account;
 //import com.customer.dao.CustomerRepository;
+import com.account.service.AccountRepository;
 
 @RestController
 //@RequestMapping(value = "/")

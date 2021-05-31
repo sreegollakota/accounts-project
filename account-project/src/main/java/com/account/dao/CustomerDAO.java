@@ -1,4 +1,4 @@
-package com.account.customer.dao;
+package com.account.dao;
 
 import java.util.List;
 import java.util.Optional;

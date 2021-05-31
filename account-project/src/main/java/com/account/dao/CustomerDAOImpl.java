@@ -1,4 +1,4 @@
-package com.account.customer.dao;
+package com.account.dao;
 
 import java.util.List;
 import java.util.Optional;
@@ -14,23 +14,26 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import com.account.model.Account;
 import com.account.model.Customer;
+import com.account.service.CustomerRepository;
 
 @Repository
+//@Service
 public class CustomerDAOImpl implements CustomerDAO{
 
-	//@Autowired
-	//private CustomerRepository customerRepository;
+	@Autowired
+	private CustomerRepository customerRepository;
 
-	/*@Override
+	@Override
 	public List<Customer> getAllCustomers() {
 		// TODO Auto-generated method stub
 		return customerRepository.findAll();
 	}
 
 	@Override
-	public Optional<Customer> getCustomerById(String customerId) {
+	public Customer getCustomerById(String customerId) {
 		// TODO Auto-generated method stub
-		return customerRepository.findById(customerId);
+		//return customerRepository.findById(customerId);
+		return null;
 	}
 
 	@Override
@@ -43,9 +46,9 @@ public class CustomerDAOImpl implements CustomerDAO{
 	public void addAccountToCustomer(String accountId, String customerId) {
 		// TODO Auto-generated method stub
 		
-	}*/
+	}
 	
-	
+	/*
 	private MongoTemplate mongoTemplate;
 	
 	@Override
@@ -71,12 +74,11 @@ public class CustomerDAOImpl implements CustomerDAO{
 	
 	@Override
 	public void addAccountToCustomer(@RequestBody String accountId,String customerId) {
-		// TODO Auto-generated method stub
-				Query query = new Query();
-				//query.addCriteria(Criteria.where("customerId").is(customerId));
-				
-				 mongoTemplate.updateFirst(query.addCriteria(Criteria.where("customerId").is(customerId)), Update.update(accountId, query),"customers");
-
+		
+	    Query query = new Query();
+	    Query firstGreatCmts = Query.query(Criteria.where("customerId").is(customerId));
+		mongoTemplate.updateFirst(firstGreatCmts, Update.update("accountId", accountId), Customer.class);
+		
 	}
-
+	*/
 }

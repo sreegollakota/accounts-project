@@ -1,4 +1,4 @@
-package com.account.dao;
+package com.account.service;
 
 
 import org.springframework.data.mongodb.repository.MongoRepository;

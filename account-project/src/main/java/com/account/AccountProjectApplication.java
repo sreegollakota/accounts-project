@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@ComponentScan({"com.account.controller","com.account.dao","com.account.model","com.customer.dao"})
+@ComponentScan({"com.account.controller","com.account.dao","com.account.model","com.account.service"})
 public class AccountProjectApplication {
 
 	public static void main(String[] args) {
