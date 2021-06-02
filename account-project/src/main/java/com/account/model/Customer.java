@@ -6,14 +6,6 @@ import java.util.List;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-/*
- * 	• Name
-	• Date of birth
-	• Address
-	• List of accounts
-	• customerId
-
- */
 @Document
 
 public class Customer {

@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.account.dao.CustomerDAO;
 import com.account.model.Customer;
-import com.account.service.CustomerRepository;
 
 @RestController
 @RequestMapping(value = "/")
@@ -22,25 +21,15 @@ import com.account.service.CustomerRepository;
 public class CustomerController {
 	private final Logger LOG = LoggerFactory.getLogger(getClass());
 
-	//@Autowired
-	//private final CustomerRepository customerRepository;
-	
 	@Autowired
 	private CustomerDAO customerDao;
 	
-	/*public CustomerController(CustomerRepository customerRepository) {//,CustomerDAO customerDao) {
-		
-		this.customerRepository = customerRepository;
-		//this.customerDao = customerDao;
-	}*/
-
 
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public List<Customer> getAllUsers() {
 		LOG.info("Getting all users.");
 		return customerDao.getAllCustomers();
 	}
-	//createCustomer
 	
 	@RequestMapping(value="customer/create",method=RequestMethod.POST)
 	public Customer createCustomer(@RequestBody Customer custDetails) {
@@ -57,12 +46,4 @@ public class CustomerController {
 		customerDao.addAccountToCustomer(accountId, customerId);
 	}
 	
-	@RequestMapping(value="customer/hi",method=RequestMethod.POST)
-	public String sayHi() {
-		LOG.info("Saving Customer Data");
-		return "Hi!!!";
-	}
-	
-	//addAccountToCustomer
-
 }

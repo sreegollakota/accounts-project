@@ -1,9 +1,6 @@
 package com.account.dao;
 
 import java.util.List;
-import java.util.Optional;
-
-import com.account.model.Account;
 import com.account.model.Customer;
 
 public interface CustomerDAO {

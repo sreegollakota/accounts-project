@@ -1,19 +1,11 @@
 package com.account.model;
 
 import java.util.Date;
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-/*
- * 	• Start date
-	• Balance
-	• List Transactions
-	• Product type / current and saving
-accountId
- */
 
 @Document
 public class Account {
